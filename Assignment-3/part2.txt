@@ -1,0 +1,70 @@
+1. Files
+
+1. Suppose the command ls were unavailable. What command could you use to view files in the current directory instead? Explain why the command works?
+
+- You can use the dir command, as it functions with the same functionality as the ls command. Alternatively, you can use echo as well.
+
+2. What option do I need to supply to the rm command to ensure I am prompted before a file or directory is removed? What option do I need to supply to the rm command to ensure I am not prompted before a file or directory is removed? What happens if both options are used simultaneously - which one has precedence?
+
+- you need to supply the -i option
+
+3. What are some differences between the rename command and the mv command?
+
+- mv moves or renames files and directories, alongside backing them up. rename will just rename files.
+
+4. The file command, when run against an executable program shows ELF 64-bit LSB executable. What does ELF mean in this context?
+
+- ELF stands for Executable and Linkable Format, which is a format used for storing binaries, libraries and core dumps.
+
+5. Consider the empty file test.txt. Why does ls -l test.txt say the filesize is 0 but du test.txt says the file size is 1?
+
+- The command shows it as -1, due to it looking at the inode number of the file. du test.txt shows the file size as 1, because it counts the number of blocks that the file uses.
+
+2. Directories
+
+1. Find a better way to do the following
+	mkdir grandparent
+	mkdir grandparent/parent
+	mkdir grandparent/parent/child
+
+- mkdir -p grandparent/parent/child
+
+2. How do you create a directory with a space in it? How do you remove a directory with a space in it?
+
+- creating: mkdir "directory with spaces"
+- removing: rm -r "directory with spaces"
+
+3. How do I create a directory and set it's permissions to dr-x------ using only the mkdir command?
+
+- mkdir -m 300 directory
+
+4. Suppose I was working in /dir1/dir2/dir3 and I cd to /dir4/dir5/dir6. What is an easy way to get back to /dir1/dir2/dir3 without using the explicit command cd /dir1/dir2/dir3 (perhaps I forgot what the full path name was).
+
+- You can use cd -
+
+5. Suppose I used pushd to add 10 folders to my stack. How do I quickly determine which folder is the 6th folder in my stack and how do I quickly cd to it?
+
+- You can use cd $6
+
+3. Permissions
+
+1. What option(s) do I need to add to chmod to print out what modifications are being made?
+
+- You can use the -v option
+
+2. What option(s) do I need to add to chown to get file2 ownership to simply match file1?
+
+- chown --reference=file1 file2
+
+3. What option(s) do I need to add to the stat command to display file permission, user ownership, and group ownership only?
+
+- stat -c "%A %U %G" filename
+
+4. How do you grant a group permission to write data to a file, but prevent the users in that group from moving, removing, or renaming the file?
+
+- chmod g+w filename
+
+5. When using chmod in symbolic mode, what happens if u/g/o/a are omitted. Eg. chmod +x <filename>
+
+- The corresponding permission will not be changed if u/g/o/a are omitted. 
+
